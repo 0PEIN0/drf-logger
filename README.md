@@ -27,3 +27,10 @@ heroku config:set HEROKU_ENV=True --app drf-logger
 heroku config:set HEROKU_HOST="drf-logger.herokuapp.com" --app drf-logger
 ```
 (here `drf-logger` is the heroku-app name)
+
+### Heroku remote container login:
+
+```bash
+heroku run bash --app drf-logger
+```
+(here `drf-logger` is the heroku-app name)
