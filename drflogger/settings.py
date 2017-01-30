@@ -119,6 +119,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+DRF_LOGGER_PROJECT_APPS = [
+    'utility',
+]
 ADMIN_USER_EMAIL = ''
 ADMIN_USER_PASSWORD = ''
 
