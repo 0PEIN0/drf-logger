@@ -126,10 +126,6 @@ DRF_LOGGER_PROJECT_APPS = [
 ]
 ADMIN_USER_EMAIL = ''
 ADMIN_USER_PASSWORD = ''
-# ADD HEROKU TO ALLOWED HOSTS
-if 'HEROKU_ENV' in os.environ:
-    ALLOWED_HOSTS.append(os.environ["HEROKU_HOST"])
-# For Heroku
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS = (
@@ -137,16 +133,17 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 if 'HEROKU_ENV' in os.environ:
+    ALLOWED_HOSTS.append(os.environ["HEROKU_HOST"])
     import dj_database_url
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'] = dj_database_url.config()
-if 'HEROKU_ENV' in os.environ:
     DEBUG = False
-else:
-    DEBUG = True
+    ADMIN_USER_EMAIL = os.environ["ADMIN_USER_EMAIL"]
+    ADMIN_USER_PASSWORD = os.environ["ADMIN_USER_PASSWORD"]
 #============Custom Section(start)===============
 try:
     from drflogger.local_settings import *
 except ImportError as ex:
-    raise Exception(
-        'Please provide a local settings file in the project folder.')
+    if not ('HEROKU_ENV' in os.environ):
+        raise Exception(
+            'Please provide a local settings file in the project folder.')
