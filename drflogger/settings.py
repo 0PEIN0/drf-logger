@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from os.path import dirname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,12 +120,31 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#============Custom Section(start)===============
 DRF_LOGGER_PROJECT_APPS = [
     'utility',
 ]
 ADMIN_USER_EMAIL = ''
 ADMIN_USER_PASSWORD = ''
-
+# ADD HEROKU TO ALLOWED HOSTS
+if 'HEROKU_ENV' in os.environ:
+    ALLOWED_HOSTS.append(os.environ["HEROKU_HOST"])
+# For Heroku
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+if 'HEROKU_ENV' in os.environ:
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'] = dj_database_url.config()
+if 'HEROKU_ENV' in os.environ:
+    DEBUG = False
+else:
+    DEBUG = True
+#============Custom Section(start)===============
 try:
     from drflogger.local_settings import *
 except ImportError as ex:
