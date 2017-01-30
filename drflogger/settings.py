@@ -118,3 +118,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ADMIN_USER_EMAIL = ''
+ADMIN_USER_PASSWORD = ''
+
+try:
+    from drflogger.local_settings import *
+except ImportError as ex:
+    raise Exception(
+        'Please provide a local settings file in the project folder.')
