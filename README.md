@@ -28,6 +28,16 @@ heroku config:set HEROKU_HOST="drf-logger.herokuapp.com" --app drf-logger
 ```
 (here `drf-logger` is the heroku-app name)
 
+```bash
+heroku config:set ADMIN_USER_EMAIL="sample@domain.ext" --app drf-logger
+```
+(here `drf-logger` is the heroku-app name)
+
+```bash
+heroku config:set ADMIN_USER_PASSWORD="django-admin-user-password" --app drf-logger
+```
+(here `drf-logger` is the heroku-app name)
+
 ### Heroku remote container login:
 
 ```bash
