@@ -151,10 +151,10 @@ if 'HEROKU_ENV' in os.environ:
     DEBUG = False
     ADMIN_USER_EMAIL = os.environ["ADMIN_USER_EMAIL"]
     ADMIN_USER_PASSWORD = os.environ["ADMIN_USER_PASSWORD"]
-#============Custom Section(start)===============
 try:
     from drflogger.local_settings import *
 except ImportError as ex:
     if not ('HEROKU_ENV' in os.environ):
         raise Exception(
             'Please provide a local settings file in the project folder.')
+#============Custom Section(start)===============
