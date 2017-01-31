@@ -1,3 +1,5 @@
+[![Travis Build Status](https://travis-ci.org/0PEIN0/drf-logger.svg?branch=develop)](https://travis-ci.org/0PEIN0/drf-logger)
+
 # drf-logger
 Django rest framework logger project.
 
