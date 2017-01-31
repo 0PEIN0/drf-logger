@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 from os.path import dirname
 
+import djcelery
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -125,6 +127,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #============Custom Section(start)===============
+djcelery.setup_loader()
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 DRF_LOGGER_PROJECT_APPS = [
     'client',
     'utility',
