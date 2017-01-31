@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'djcelery',
+    'client',
+    'utility',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +126,7 @@ STATIC_URL = '/static/'
 
 #============Custom Section(start)===============
 DRF_LOGGER_PROJECT_APPS = [
+    'client',
     'utility',
 ]
 ADMIN_USER_EMAIL = ''
