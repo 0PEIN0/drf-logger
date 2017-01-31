@@ -5,7 +5,7 @@ if [ -d "uploads" ]; then
 else
   mkdir uploads
 fi;
-appNames=(client utility)
+appNames=(client utility logger)
 for i in ${appNames[@]}; do
   mkdir $i/migrations/
   touch $i/migrations/__init__.py

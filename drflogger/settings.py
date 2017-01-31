@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'client',
+    'logger',
     'utility',
 ]
 
@@ -131,6 +132,7 @@ CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 DRF_LOGGER_PROJECT_APPS = [
     'client',
+    'logger',
     'utility',
 ]
 ADMIN_USER_EMAIL = ''
