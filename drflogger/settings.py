@@ -124,22 +124,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #============Custom Section(start)===============
-PROJECT_APP = [
-    'logger',
-    'utility'
-]
-INSTALLED_APPS = INSTALLED_APPS + PROJECT_APP
+CELERY_IMPORTS = (,)
 djcelery.setup_loader()
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
 DRF_LOGGER_PROJECT_APPS = [
     'client',
     'logger',
     'utility',
 ]
+INSTALLED_APPS = INSTALLED_APPS + DRF_LOGGER_PROJECT_APPS
 ADMIN_USER_EMAIL = ''
 ADMIN_USER_PASSWORD = ''
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 try:
     from drflogger.local_settings import *
 except ImportError as ex:
@@ -147,6 +144,7 @@ except ImportError as ex:
         raise Exception(
             'Please provide a local settings file in the project folder.')
 #============Heroku Section(start)===============
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
